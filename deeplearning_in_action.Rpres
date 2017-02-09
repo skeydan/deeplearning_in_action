@@ -1,0 +1,208 @@
+Deep Learning in Action
+========================================================
+author: 
+date: 
+autosize: true
+
+First Slide
+========================================================
+
+- examples
+- neural networks
+- convnet.js
+- short intro to other frameworks
+- examples again, with a bit of theory
+
+
+
+Neural networks
+========================================================
+pic tbd
+
+
+
+Deep neural networks
+========================================================
+A deep representation is a composition of many functions
+
+$x \xrightarrow{w_1} h_1 \xrightarrow{w_2} h_2 \xrightarrow{w_3} ... \xrightarrow{w_n} h_n \xrightarrow{w_{n+1}} y$
+
+
+Backpropagation
+========================================================
+![optional caption text](backprop.png)
+
+http://cs231n.github.io/optimization-2/
+
+Hard is easy, easy is hard
+========================================================
+
+![optional caption text](moravec.png)
+
+MIT Course 6.S094:
+Deep Learning for Self-Driving Cars
+
+
+
+
+Why computer vision is hard
+========================================================
+
+![optional caption text](deformable_cat.png)
+
+
+http://www.robots.ox.ac.uk/~vgg/publications/2012/parkhi12a/parkhi12a.pdf
+
+
+Tasks in computer vision
+========================================================
+
+![optional caption text](class_loc_dec_seg.png)
+
+Source: CS231n (Stanford) lecture slides
+
+
+Classification
+========================================================
+
+![optional caption text](classification.png)
+
+A. Krizhevsky, I. Sutskever and G. Hinton, “ImageNet Classification with Deep Convolutional Neural Networks”, in Advances in Neural Information Processing Systems, 2012.
+
+// output probability for each class
+
+Localization
+========================================================
+
+![optional caption text](localization.png)
+
+[1] Erhan D., Szegedy C., Toshev, A., and Anguelov, D., "Scalable Object Detection using Deep Neural Networks", The IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014, pp. 2147-2154.
+
+// slide window over image
+// or predict bounding box coordinates (regression)
+
+
+Object Detection
+========================================================
+
+![optional caption text](detection.png)
+
+http://image-net.org/challenges/LSVRC/2014/
+
+// = classifying and localizing multiple objects in an image 
+// aka image recognition
+// binary mask regression for each object type combined with predicting the bounding box coordinates
+
+
+Segmentation
+========================================================
+
+![optional caption text](segmentation.png)
+
+https://arxiv.org/pdf/1411.4038.pdf
+
+//the network needs to predict a class value for each input pixel.
+
+
+Semantic vs. Instance Segmentation
+========================================================
+
+![optional caption text](segmentation.png)
+
+https://arxiv.org/pdf/1411.4038.pdf
+
+@inproceedings{SilbermanCoverage:ECCV14,
+  author    = {Nathan Silberman, David Sontag and Rob Fergus},
+  title     = {Instance Segmentation of Indoor Scenes using a Coverage Loss},
+  booktitle = {ECCV},
+  year      = {2014}
+}
+
+
+Linking images and language: image caption generation
+========================================================
+
+![optional caption text](image_captions.png)
+![optional caption text](image_captions2.png)
+
+http://cs.stanford.edu/people/karpathy/cvpr2015.pdf
+
+
+Linking video and sound: adding audio to silent film
+========================================================
+
+![optional caption text](sound_generation.png)
+
+https://arxiv.org/pdf/1512.08512.pdf
+
+
+
+
+Representation learning
+========================================================
+pics from pres
+
+
+
+
+
+
+
+
+
+Reinforcement learning: Welcome to the humans
+========================================================
+
+![optional caption text](typesofml.png) 
+
+Source: deep driving
+
+![optional caption text](dopamine.png) 
+
+Reinforcement learning: Welcome to the humans
+========================================================
+
+> David Silver, Google Deep Mind: _Reinforcement Learning: AI = RL_
+
+> Takeaway from Supervised Learning:
+Neural networks are great at memorization and not (yet)
+great at reasoning.
+Hope for Reinforcement Learning:
+Brute-force propagation of outcomes to knowledge about
+states and actions. This is a kind of brute-force “reasoning”.
+MIT DD
+
+
+Delayed reward
+========================================================
+
+If I get a reward many many actions later, how do I find out what I'm getting the reward _for_?
+
+
+Reinforcement learning
+========================================================
+
+![optional caption text](robot.png)
+
+MIT
+
+
+
+Deep reinforcement learning
+========================================================
+
+![optional caption text](dqn.png) 
+
+http://www.nature.com/articles/nature16961.epdf?referrer_access_token=S7uXxNIroKd-0ITVLIW9mdRgN0jAjWel9jnR3ZoTv0OivKk3lXs6SxMz535byYwHnl5-dYSTNp9HCujoL8AwwR39NrI-N0UvQYqpO-G6W-1I6_OXAuVukQ08lbvopRKY2yVJlWWUJvj6gL5qyO8kI3FwsIuw4iSKC-s4RoTnZdVG8WevGFeuMdJ2Zl9cZF7yixAslaF4yKEx3rom3ZszmZBsyuq-9RAnx1XZac4keCI%3D&tracking_referrer=www.nature.com
+
+
+Deep reinforcement learning
+========================================================
+
+![optional caption text](dqn2.png) 
+
+http://icml.cc/2016/tutorials/AlphaGo-tutorial-slides.pdf
+
+
+
+
