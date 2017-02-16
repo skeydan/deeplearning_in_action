@@ -1,52 +1,111 @@
+```{r setup, include=FALSE}
+opts_chunk$set(cache=TRUE)
+#opts_chunk$set(out.width='750px', dpi=200)
+```
+<style>
+.reveal table td{
+    border: 0;
+}
+.reveal table {
+    border: 0;
+}
+.small-code pre code {
+  font-size: 1em;
+}
+.midcenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+.footer {
+    position: fixed; 
+    top: 90%;
+    text-align:right; 
+    width:90%;
+    margin-top:-150px;
+}
+.reveal section img {
+  border: 0px;
+  box-shadow: 0 0 0 0;
+}
+</style>
+
+
 Deep Learning in Action
 ========================================================
-author: 
-date: 
 autosize: true
+width: 1440
+incremental:true 
 
-First Slide
+What brings you here?
 ========================================================
 
-- examples
-- neural networks
-- convnet.js
-- examples again, with a bit of theory
-
-- short intro to other frameworks
+Let me guess...
 
 
-Self-driving cars
+<table>
+<tr>
+<td><img src='self_driving_cars.png' width='200px' /></td><td><img src='translate.png' width='200px'/></td><td><img src='skincancer.png' width='200px'/></td>
+</tr>
+<tr>
+<td><img src='go.png' width='200px' /></td><td><img src='stock.png' width='200px'/></td><td><img src='weather.png' width='200px'/></td>
+</tr>
+<tr><td>Image sources: [1],[3],[4],[5],[6]</td></tr>
+</table>
+
+<!-- 
+- autonomous driving: where are the others, how are they moving/what are they doing, where am I, how are the weather conditions, how do I get to ...?
+  -> deep neural networks used for object recognition and localization, deep reinforcement learning used for motion planning
+  -> more upcoming
+
+- machine translation: as you type, Google updates the translation. Also, Google does language detection, and updates the guess at every step. How does this work - language comes in as a sequence, how do I keep track of the elements I've already seen, and how do I weight the new input against the old, and how is the translation generated?
+  -> again, deep NNs are responsible for a recent big improvement in performance
+  -> more upcoming
+  
+- medical diagnosis: example: detection of skin cancer: CNNs performing on par with human experts - opportunities for more large-scale prevention, e.g. using smartphone app
+
+- pharmacology: develop new drugs - normally developing new pharmacological products is extremely costly and  takes very long, so if this could be speeded up enormous savings would result
+  -> generative adverserial neural networks
+
+- AlphaGo: March 2016, AlphaGo wins 4/5 matches against Lee Sedol - Go substantially more difficult than chess - AI win predicted to take considerably longer by experts
+  -> combination of 2 deep neural networks (the policy network suggests the move, the value network evaluates the position) - first the policy network was trained on input from human experts, then both networks were further evolved using reinforcement learning
+  
+- stock market prediction: often when people try to predict the stock market they use numerical data - however, those numerical data mostly are available "after the fact". Using textual data (newspaper articles etc.) is more complex and needs to be able to handle sequences (of words)
+  -> again, a certain type of deep NN is especially suited for handling temporal data
+  
+- predicting the weather: The Weather Company, acquired by IBM, provides extremely localized, short time weather forecasts, as well as long-term seasonal predictions. They are said to use deep learning algorithms for that. 
+
+
+Sources
 ========================================================
+incremental:false
+
+[1] <a href='http://selfdrivingcars.mit.edu/'>MIT 6.S094: Deep Learning for Self-Driving Cars Lecture Slides</a>
+
+[3] <a href='http://www.nature.com/nature/journal/v542/n7639/full/nature21056.html'>Esteva et al., Dermatologist-level classification of skin cancer with deep neural networks</a>
+
+[4] <a href='https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol'>Wikipedia, AlphaGo versus Lee Sedol</a>
+
+[5] <a href='www.sciedupress.com/journal/index.php/air/article/download/7720/5022'>Yoshihara et al., Leveraging temporal properties of news events for stock market prediction.</a>
+
+[6] <a href='http://www.theweathercompany.com/newsroom/2017/01/23/seasonal-outlook-weather-company-predicts-unusually-mild-weather-early-february'</a> The Weather Company, Seasonal forecast</a>
+
+[7] <a href= 'http://www.dddmag.com/news/2017/02/neural-network-learns-select-potential-anticancer-drugs'>Neural Network Learns to Select Potential Anticancer Drugs</a>
+
+[8] <a href='https://research.googleblog.com/2016/01/alphago-mastering-ancient-game-of-go.html'>Google Research Blog: AlphaGo: Mastering the ancient game of Go with Machine Learning</a>
+
+[9] <a href='http://www.theweathercompany.com/DeepThunder'>The Weather Company Launches Deep Thunder - the World’s Most Advanced Hyper-Local Weather Forecasting Model for Businesses</a>
 
 
-Machine Translation
-========================================================
-
-https://arxiv.org/pdf/1609.08144.pdf
-
-
-Medical Diagnosis
-========================================================
-
-![optional caption text](skincancer.png)
-
-http://www.nature.com/nature/journal/vaop/ncurrent/full/nature21056.html
 
 
 
-Stock market prediction
-========================================================
 
-![optional caption text](stock.png)
-
-Yoshihara et al. "Leveraging temporal properties of news
-events for stock market prediction." 2015.
-
-
-Neural networks
+So what is a neural network?
 ========================================================
 pic tbd
 
+https://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html
 
 
 Deep neural networks
