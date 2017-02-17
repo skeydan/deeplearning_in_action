@@ -1,0 +1,155 @@
+
+What brings you here?
+========================================================
+
+- autonomous driving: where are the others, how are they moving/what are they doing, where am I, how are the weather conditions, how do I get to ...?
+  -> deep neural networks used for object recognition and localization, deep reinforcement learning used for motion planning
+  -> more upcoming
+
+- machine translation: as you type, Google updates the translation. Also, Google does language detection, and updates the guess at every step. How does this work - language comes in as a sequence, how do I keep track of the elements I've already seen, and how do I weight the new input against the old, and how is the translation generated?
+  -> again, deep NNs are responsible for a recent big improvement in performance
+  -> more upcoming
+  
+- medical diagnosis: example: detection of skin cancer: CNNs performing on par with human experts - opportunities for more large-scale prevention, e.g. using smartphone app
+
+- pharmacology: develop new drugs - normally developing new pharmacological products is extremely costly and  takes very long, so if this could be speeded up enormous savings would result
+  -> generative adverserial neural networks
+
+- AlphaGo: March 2016, AlphaGo wins 4/5 matches against Lee Sedol - Go substantially more difficult than chess - AI win predicted to take considerably longer by experts
+  -> combination of 2 deep neural networks (the policy network suggests the move, the value network evaluates the position) - first the policy network was trained on input from human experts, then both networks were further evolved using reinforcement learning
+  
+- stock market prediction: often when people try to predict the stock market they use numerical data - however, those numerical data mostly are available "after the fact". Using textual data (newspaper articles etc.) is more complex and needs to be able to handle sequences (of words)
+  -> again, a certain type of deep NN is especially suited for handling temporal data
+  
+- predicting the weather: The Weather Company, acquired by IBM, provides extremely localized, short time weather forecasts, as well as long-term seasonal predictions. They are said to use deep learning algorithms for that. 
+
+
+
+ConvNetJS Demo
+========================================================
+
+
+1. SIMPLE data, shallow network
+
+-> task cannot be solved
+
+layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+layer_defs.push({type:'softmax', num_classes:2});
+
+trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
+
+
+2. SIMPLE data, 1 hidden layer with tanh activation
+
+-> now it works!
+
+layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+layer_defs.push({type:'fc', num_neurons:2, activation: 'tanh'});
+layer_defs.push({type:'softmax', num_classes:2});
+
+trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
+
+
+3. SIMPLE data, change learning rate (0.001)
+
+-> takes much longer
+
+layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+layer_defs.push({type:'fc', num_neurons:2, activation: 'tanh'});
+layer_defs.push({type:'softmax', num_classes:2});
+
+trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.001, momentum:0.1, batch_size:10, l2_decay:0.001});
+
+
+4. SIMPLE data, change learning rate (0.5)
+
+-> extremely quick in this case, but can also not converge
+
+layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+layer_defs.push({type:'fc', num_neurons:2, activation: 'tanh'});
+layer_defs.push({type:'softmax', num_classes:2});
+
+trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.5, momentum:0.1, batch_size:10, l2_decay:0.001});
+
+
+5. SIMPLE data, change activation function to relu
+
+-> seems slower
+
+layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+layer_defs.push({type:'fc', num_neurons:2, activation: 'relu'});
+layer_defs.push({type:'softmax', num_classes:2});
+
+trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
+
+
+6. CIRCLE data, still 1 hidden layer with relu or tanh activation
+
+-> does not work
+
+layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+layer_defs.push({type:'fc', num_neurons:2, activation: 'relu'});
+layer_defs.push({type:'softmax', num_classes:2});
+
+trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
+
+
+7. CIRCLE data, change number of neurons in hidden unit to 3
+
+-> works (and superquick!)
+
+layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+layer_defs.push({type:'fc', num_neurons:3, activation: 'tanh'});
+layer_defs.push({type:'softmax', num_classes:2});
+
+trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
+
+
+8. SPIRAL data, still with tanh activation and 3 neurons
+
+do you think this will work?
+although you don't see, it keeps trying on and on... (show top)
+
+layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+layer_defs.push({type:'fc', num_neurons:3, activation: 'tanh'});
+layer_defs.push({type:'softmax', num_classes:2});
+
+trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
+
+
+9. SPIRAL data, add another hidden layer with 3 neurons
+
+-> gets real "upset"
+
+layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+layer_defs.push({type:'fc', num_neurons:3, activation: 'tanh'});
+layer_defs.push({type:'fc', num_neurons:3, activation: 'tanh'});
+layer_defs.push({type:'softmax', num_classes:2});
+
+trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
+
+
+10. SPIRAL data, more neurons in hidden layers
+
+-> this does it!
+
+
+
+
+TensorFlow playground Demo
+========================================================
+
+[npm run build]
+npm run serve
+
+1. SIMPLE data
+
+We need just 1 neuron for the input and 1 neuron for the output to differentiate between both classes, as the data don't overlap on any axis!
+
+- can also use x2 instead!
+
+
+
+
+
+

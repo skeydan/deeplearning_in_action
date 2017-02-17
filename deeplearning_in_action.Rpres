@@ -9,6 +9,9 @@ opts_chunk$set(cache=TRUE)
 .reveal table {
     border: 0;
 }
+.reveal src {
+    font-size: 0.6em;
+}
 .small-code pre code {
   font-size: 1em;
 }
@@ -31,7 +34,7 @@ opts_chunk$set(cache=TRUE)
 </style>
 
 
-Deep Learning in Action
+Deep Learning in Action  
 ========================================================
 autosize: true
 width: 1440
@@ -40,41 +43,15 @@ incremental:true
 What brings you here?
 ========================================================
 
-Let me guess...
-
-
 <table>
 <tr>
-<td><img src='self_driving_cars.png' width='200px' /></td><td><img src='translate.png' width='200px'/></td><td><img src='skincancer.png' width='200px'/></td>
+<td><img src='self_driving_cars.png' width='400px' /></td><td><img src='translate.png' width='400px'/></td><td><img src='skincancer.png' width='400px'/></td>
 </tr>
 <tr>
-<td><img src='go.png' width='200px' /></td><td><img src='stock.png' width='200px'/></td><td><img src='weather.png' width='200px'/></td>
+<td><img src='go.png' width='400px' /></td><td><img src='stock.png' width='400px'/></td><td><img src='weather.png' width='400px'/></td>
 </tr>
-<tr><td>Image sources: [1],[3],[4],[5],[6]</td></tr>
+<tr><td class='src'>Sources: [1],[3],[4],[5],[6]</td></tr>
 </table>
-
-<!-- 
-- autonomous driving: where are the others, how are they moving/what are they doing, where am I, how are the weather conditions, how do I get to ...?
-  -> deep neural networks used for object recognition and localization, deep reinforcement learning used for motion planning
-  -> more upcoming
-
-- machine translation: as you type, Google updates the translation. Also, Google does language detection, and updates the guess at every step. How does this work - language comes in as a sequence, how do I keep track of the elements I've already seen, and how do I weight the new input against the old, and how is the translation generated?
-  -> again, deep NNs are responsible for a recent big improvement in performance
-  -> more upcoming
-  
-- medical diagnosis: example: detection of skin cancer: CNNs performing on par with human experts - opportunities for more large-scale prevention, e.g. using smartphone app
-
-- pharmacology: develop new drugs - normally developing new pharmacological products is extremely costly and  takes very long, so if this could be speeded up enormous savings would result
-  -> generative adverserial neural networks
-
-- AlphaGo: March 2016, AlphaGo wins 4/5 matches against Lee Sedol - Go substantially more difficult than chess - AI win predicted to take considerably longer by experts
-  -> combination of 2 deep neural networks (the policy network suggests the move, the value network evaluates the position) - first the policy network was trained on input from human experts, then both networks were further evolved using reinforcement learning
-  
-- stock market prediction: often when people try to predict the stock market they use numerical data - however, those numerical data mostly are available "after the fact". Using textual data (newspaper articles etc.) is more complex and needs to be able to handle sequences (of words)
-  -> again, a certain type of deep NN is especially suited for handling temporal data
-  
-- predicting the weather: The Weather Company, acquired by IBM, provides extremely localized, short time weather forecasts, as well as long-term seasonal predictions. They are said to use deep learning algorithms for that. 
-
 
 Sources
 ========================================================
@@ -96,6 +73,11 @@ incremental:false
 
 [9] <a href='http://www.theweathercompany.com/DeepThunder'>The Weather Company Launches Deep Thunder - the World’s Most Advanced Hyper-Local Weather Forecasting Model for Businesses</a>
 
+[10] <a href='https://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html'>Christos Stergiou and Dimitrios Siganos, Artificial neurons</a>
+
+[11] <a href='https://uwaterloo.ca/data-science/sites/ca.data-science/files/uploads/files/lecture_1_0.pdf'>University of Waterloo Deep Learning Slides</a>
+
+[12] <a href="http://www.deeplearningbook.org/"> Goodfellow et al., Deep Learning</a>
 
 
 
@@ -103,16 +85,113 @@ incremental:false
 
 So what is a neural network?
 ========================================================
-pic tbd
 
-https://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html
+Biological neuron and artificial neuron
+
+<table>
+<tr>
+<td><img src='neuron1.png' width='400px' /></td><td><img src='neuron2.png' width='400px'/></td>
+</tr>
+<tr><td class='src'>Source: [10]</td></tr>
+</table>
 
 
-Deep neural networks
+Prototype of a neuron: the perceptron (Rosenblatt, 1958)
 ========================================================
+
+<table>
+<tr>
+<td><img src='perceptron.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [10]</td></tr>
+</table>
+
+
+Deep neural networks: introducing hidden layers
+========================================================
+
+<table>
+<tr>
+<td><img src='deep_nn.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [10]</td></tr>
+</table>
+
+
+Deep neural networks as function composition
+========================================================
+
+&nbsp;
+
 A deep representation is a composition of many functions
 
+&nbsp;
+
 $x \xrightarrow{w_1} h_1 \xrightarrow{w_2} h_2 \xrightarrow{w_3} ... \xrightarrow{w_n} h_n \xrightarrow{w_{n+1}} y$
+
+
+
+Why go deep? A bit of background
+========================================================
+
+&nbsp;
+
+Easy? Difficult?
+
+- walk
+- talk
+- play chess
+- solve matrix computations
+
+
+Easy for us - difficult for computers
+========================================================
+
+&nbsp;
+
+- controlled movement 
+- speech recognition
+- speech generation
+- object recognition and object localization
+
+
+Representation matters
+========================================================
+
+<table>
+<tr>
+<td><img src='coords.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [12]</td></tr>
+</table>
+
+
+
+Just feed the network the right features?
+========================================================
+
+&nbsp;
+
+What are the correct pixel values for a "bike" feature?
+
+- race bike, mountain bike, e-bike?
+- pixels in the shadow may be much darker
+- what if bike is mostly obscured by rider standing in front?
+
+
+
+Let the network pick the features
+========================================================
+
+... a layer at a time
+
+<table>
+<tr>
+<td><img src='features.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [12]</td></tr>
+</table>
+
 
 
 Backpropagation
@@ -124,116 +203,27 @@ http://cs231n.github.io/optimization-2/
 // If we anthropomorphize the circuit as wanting to output a higher value (which can help with intuition), then we can think of the circuit as “wanting” the output of the add gate to be lower (due to negative sign), and with a force of 4. To continue the recurrence and to chain the gradient, the add gate takes that gradient and multiplies it to all of the local gradients for its inputs (making the gradient on both x and y 1 * -4 = -4). 
 
 
-Hard is easy, easy is hard
+
+
+So how does a network learn?
 ========================================================
 
-![optional caption text](moravec.png)
+&nbsp;
 
-MIT Course 6.S094:
-Deep Learning for Self-Driving Cars
+Just a sec - let's meet a real neural network first!
 
+Play around in the browser:
 
-Convnetjs demo
-========================================================
-
-1. shallow network, simple data
-
-```
-layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-layer_defs.push({type:'softmax', num_classes:2});
-
-trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
-```
-
-2. deep network, simple data, 1 hidden layer with tanh activation
-
-```
-layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-layer_defs.push({type:'fc', num_neurons:2, activation: 'tanh'});
-layer_defs.push({type:'softmax', num_classes:2});
-
-trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
-```
-
-3. deep network, simple data, change learning rate (0.001)
-
-```
-layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-layer_defs.push({type:'fc', num_neurons:2, activation: 'tanh'});
-layer_defs.push({type:'softmax', num_classes:2});
-
-trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.001, momentum:0.1, batch_size:10, l2_decay:0.001});
-```
-
-4. deep network, simple data, change learning rate (0.5)
-
-```
-layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-layer_defs.push({type:'fc', num_neurons:2, activation: 'tanh'});
-layer_defs.push({type:'softmax', num_classes:2});
-
-trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.5, momentum:0.1, batch_size:10, l2_decay:0.001});
-```
-
-5. deep network, simple data, change activation function to relu
-
-```
-layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-layer_defs.push({type:'fc', num_neurons:2, activation: 'relu'});
-layer_defs.push({type:'softmax', num_classes:2});
-
-trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
-```
-
-6. deep network, circle data, still 1 hidden layer with relu or tanh activation
-
-```
-layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-layer_defs.push({type:'fc', num_neurons:2, activation: 'relu'});
-layer_defs.push({type:'softmax', num_classes:2});
-
-trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
-```
-
-7. deep network, circle data, change number of neurons in hidden unit to 3
-
-```
-layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-layer_defs.push({type:'fc', num_neurons:3, activation: 'tanh'});
-layer_defs.push({type:'softmax', num_classes:2});
-
-trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
-```
-
-8. deep network, spiral data, still with tanh activation and 3 neurons
-
-```
-layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-layer_defs.push({type:'fc', num_neurons:3, activation: 'tanh'});
-layer_defs.push({type:'softmax', num_classes:2});
-
-trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
-```
-
-9. deep network, spiral data, add another hidden layer with 3 neurons
-
-```
-layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-layer_defs.push({type:'fc', num_neurons:3, activation: 'tanh'});
-layer_defs.push({type:'fc', num_neurons:3, activation: 'tanh'});
-layer_defs.push({type:'softmax', num_classes:2});
-
-trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch_size:10, l2_decay:0.001});
-```
-
-10. deep network, spiral data, more neurons in hidden layers
+- <a href='http://cs.stanford.edu/people/karpathy/convnetjs/index.html'>ConvNetJS</a>
+- <a href='http://cs.stanford.edu/people/karpathy/convnetjs/index.html'>TensorFlow playground</a>
 
 
 
 
-Representation learning
-========================================================
-pics from pres
+
+
+
+
 
 
 
