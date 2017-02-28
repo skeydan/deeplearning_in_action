@@ -1,12 +1,12 @@
 
-What brings you here?
+Action
 ========================================================
 
 - autonomous driving: where are the others, how are they moving/what are they doing, where am I, how are the weather conditions, how do I get to ...?
   -> deep neural networks used for object recognition and localization, deep reinforcement learning used for motion planning
   -> more upcoming
 
-- machine translation: as you type, Google updates the translation. Also, Google does language detection, and updates the guess at every step. How does this work - language comes in as a sequence, how do I keep track of the elements I've already seen, and how do I weight the new input against the old, and how is the translation generated?
+- machine translation: as you type, Google updates the translation. Also, Google does language detection, and updates the guess at every step. How does this work - language comes in as a sequence, how do I keep track of the elements I've already seen, and how do I weigh the new input against the old, and how is the translation generated?
   -> again, deep NNs are responsible for a recent big improvement in performance
   -> more upcoming
   
@@ -17,11 +17,26 @@ What brings you here?
 
 - AlphaGo: March 2016, AlphaGo wins 4/5 matches against Lee Sedol - Go substantially more difficult than chess - AI win predicted to take considerably longer by experts
   -> combination of 2 deep neural networks (the policy network suggests the move, the value network evaluates the position) - first the policy network was trained on input from human experts, then both networks were further evolved using reinforcement learning
+  -> talk shortly about reinforcement learning later
   
-- stock market prediction: often when people try to predict the stock market they use numerical data - however, those numerical data mostly are available "after the fact". Using textual data (newspaper articles etc.) is more complex and needs to be able to handle sequences (of words)
-  -> again, a certain type of deep NN is especially suited for handling temporal data
+- stock market prediction: often when people try to predict the stock market they use numerical data - however, those numerical data mostly are available "after the fact". Using textual data (newspaper articles etc.) is more complex and you need to be able to handle sequences (of words)
+  -> again, a certain type of deep NN is especially suited for handling temporal data, we'll see that later
   
 - predicting the weather: The Weather Company, acquired by IBM, provides extremely localized, short time weather forecasts, as well as long-term seasonal predictions. They are said to use deep learning algorithms for that. 
+
+
+
+So what is a neural network?
+========================================================
+
+make it clear that the weights have to be learned! (while inputs are fixed)
+
+
+Prototype of a neuron: the perceptron (Rosenblatt, 1958)
+========================================================
+
+- compute linear combination of inputs
+- return +1 if result is positive, -1 if result is negative
 
 
 
@@ -139,15 +154,55 @@ trainer = new convnetjs.SGDTrainer(net, {learning_rate:0.01, momentum:0.1, batch
 TensorFlow playground Demo
 ========================================================
 
+cd /home/key/code/python/tensorflow-playground
 [npm run build]
 npm run serve
 
-1. SIMPLE data
+1. Gaussian data
 
-We need just 1 neuron for the input and 1 neuron for the output to differentiate between both classes, as the data don't overlap on any axis!
+- 0 hidden layers
+- just 1 input
+- noise 0
+- TRAIN
 
-- can also use x2 instead!
+-> loss is nearly 0, as the data don't overlap on any axis!
 
+2. Gaussian data
+
+- change noise
+- TRAIN
+- with higher noise, 1 neuron cannot get it right any more
+
+
+3. Gaussian data
+
+- add 2nd neuron
+- TRAIN
+- now still have a separating line, but the line need not be vertical or horizontal any more
+
+
+4. exclusive OR
+
+- remove noise again and try with our 2 neurons
+- TRAIN
+- whatever we do, loss stays at 0.5
+
+
+5. exclusive OR
+
+- add hidden layer with 2 neurons
+- TRAIN
+- gets better but not good
+
+
+6. exclusive OR
+
+- add third neuron to hidden layer
+- TRAIN
+- already MUCH better!
+
+
+-> stopping here - you can comfortably play around with learning rate, activation, regularization...
 
 
 

@@ -40,47 +40,18 @@ autosize: true
 width: 1440
 incremental:true 
 
-What brings you here?
+Action!
 ========================================================
 
 <table>
 <tr>
-<td><img src='self_driving_cars.png' width='400px' /></td><td><img src='translate.png' width='400px'/></td><td><img src='skincancer.png' width='400px'/></td>
+<td><img src='self_driving_cars.png' width='300px' /></td><td><img src='translate.png' width='300px'/></td><td><img src='skincancer.png' width='300px'/></td>
 </tr>
 <tr>
-<td><img src='go.png' width='400px' /></td><td><img src='stock.png' width='400px'/></td><td><img src='weather.png' width='400px'/></td>
+<td><img src='go.png' width='300px' /></td><td><img src='stock.png' width='300px'/></td><td><img src='weather.png' width='300px'/></td>
 </tr>
 <tr><td class='src'>Sources: [1],[3],[4],[5],[6]</td></tr>
 </table>
-
-Sources
-========================================================
-incremental:false
-
-[1] <a href='http://selfdrivingcars.mit.edu/'>MIT 6.S094: Deep Learning for Self-Driving Cars Lecture Slides</a>
-
-[3] <a href='http://www.nature.com/nature/journal/v542/n7639/full/nature21056.html'>Esteva et al., Dermatologist-level classification of skin cancer with deep neural networks</a>
-
-[4] <a href='https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol'>Wikipedia, AlphaGo versus Lee Sedol</a>
-
-[5] <a href='www.sciedupress.com/journal/index.php/air/article/download/7720/5022'>Yoshihara et al., Leveraging temporal properties of news events for stock market prediction.</a>
-
-[6] <a href='http://www.theweathercompany.com/newsroom/2017/01/23/seasonal-outlook-weather-company-predicts-unusually-mild-weather-early-february'</a> The Weather Company, Seasonal forecast</a>
-
-[7] <a href= 'http://www.dddmag.com/news/2017/02/neural-network-learns-select-potential-anticancer-drugs'>Neural Network Learns to Select Potential Anticancer Drugs</a>
-
-[8] <a href='https://research.googleblog.com/2016/01/alphago-mastering-ancient-game-of-go.html'>Google Research Blog: AlphaGo: Mastering the ancient game of Go with Machine Learning</a>
-
-[9] <a href='http://www.theweathercompany.com/DeepThunder'>The Weather Company Launches Deep Thunder - the World’s Most Advanced Hyper-Local Weather Forecasting Model for Businesses</a>
-
-[10] <a href='https://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html'>Christos Stergiou and Dimitrios Siganos, Artificial neurons</a>
-
-[11] <a href='https://uwaterloo.ca/data-science/sites/ca.data-science/files/uploads/files/lecture_1_0.pdf'>University of Waterloo Deep Learning Slides</a>
-
-[12] <a href="http://www.deeplearningbook.org/"> Goodfellow et al., Deep Learning</a>
-
-
-
 
 
 So what is a neural network?
@@ -187,21 +158,10 @@ Let the network pick the features
 
 <table>
 <tr>
-<td><img src='features.png' width='800px' /></td>
+<td><img src='features.png' width='600px' /></td>
 </tr>
 <tr><td class='src'>Source: [12]</td></tr>
 </table>
-
-
-
-Backpropagation
-========================================================
-![optional caption text](backprop.png)
-
-http://cs231n.github.io/optimization-2/
-
-// If we anthropomorphize the circuit as wanting to output a higher value (which can help with intuition), then we can think of the circuit as “wanting” the output of the add gate to be lower (due to negative sign), and with a force of 4. To continue the recurrence and to chain the gradient, the add gate takes that gradient and multiplies it to all of the local gradients for its inputs (making the gradient on both x and y 1 * -4 = -4). 
-
 
 
 
@@ -218,11 +178,93 @@ Play around in the browser:
 - <a href='http://cs.stanford.edu/people/karpathy/convnetjs/index.html'>TensorFlow playground</a>
 
 
+So how DOES a neural network learn?
+========================================================
+
+&nbsp;
+
+We need:
+
+- a way to quantify our current (e.g., classification) error
+- a way to reduce error on subsequent iterations
+- a way to propagate our improvement logic from the output layer all back through the network!
+
+
+Quantifying error: Loss functions
+========================================================
+
+&nbsp;
+
+The _loss_ (or _cost_) function indicates the cost incurred from false prediction / misclassification
+
+Probably the best-known loss function in machine learning is __mean squared error__: 
+
+  $\frac{1}{n} \sum_n{(\hat{y} - y)^2}$
+  
+Most of the time, in deep learning we use __cross entropy__:
+
+  $- \sum_j{t_j log(y_j)}$
+  
+This is the negative log probability of the right answer.
+  
 
 
 
+Learning from errors: Gradient Descent
+========================================================
 
 
+<table>
+<tr>
+<td><img src='convex.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [12]</td></tr>
+</table>
+
+
+Propagate back errors ... well: Backpropagation!
+========================================================
+incremental:false
+
+&nbsp;
+
+- basically, just the chain rule: $\frac{dz}{dx} = \frac{dz}{dy} \frac{dy}{dx}$
+- chained over several layers:
+
+<table>
+<tr>
+<td><img src='backprop2.png' width='600px' /></td>
+</tr>
+<tr><td class='src'>Source: [14]</td></tr>
+</table>
+
+
+ 
+Forward pass and backward pass: Intuition
+========================================================
+incremental:false
+
+- imagine output of $f = (x + y) * z = -12$ "wants" to get bigger
+- this could happen by $q$ getting smaller -> $q$ receives negative gradient $\frac{df}{dq} = -4$
+- $q$ just passes on this gradient to $x$ and $y$, as  $\frac{dq}{dx} = 1$ and  $\frac{dq}{dy} = 1$
+- alternatively, it could happen by $z$ getting bigger -> $z$ receives positive gradient $\frac{df}{dz} = 3$
+
+<table>
+<tr>
+<td><img src='backprop.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [13]</td></tr>
+</table>
+
+
+
+Applications by example
+========================================================
+
+&nbsp;
+
+- CNNS (Convolutional Neural Networks) in computer vision
+- Spee
 
 
 
@@ -402,4 +444,42 @@ http://icml.cc/2016/tutorials/AlphaGo-tutorial-slides.pdf
 
 
 
+Sources (1)
+========================================================
+incremental:false
+
+&nbsp;
+
+[1] <a href='http://selfdrivingcars.mit.edu/'>MIT 6.S094: Deep Learning for Self-Driving Cars Lecture Slides</a>
+
+[3] <a href='http://www.nature.com/nature/journal/v542/n7639/full/nature21056.html'>Esteva et al., Dermatologist-level classification of skin cancer with deep neural networks</a>
+
+[4] <a href='https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol'>Wikipedia, AlphaGo versus Lee Sedol</a>
+
+[5] <a href='www.sciedupress.com/journal/index.php/air/article/download/7720/5022'>Yoshihara et al., Leveraging temporal properties of news events for stock market prediction.</a>
+
+[6] <a href='http://www.theweathercompany.com/newsroom/2017/01/23/seasonal-outlook-weather-company-predicts-unusually-mild-weather-early-february'</a> The Weather Company, Seasonal forecast</a>
+
+[7] <a href= 'http://www.dddmag.com/news/2017/02/neural-network-learns-select-potential-anticancer-drugs'>Neural Network Learns to Select Potential Anticancer Drugs</a>
+
+[8] <a href='https://research.googleblog.com/2016/01/alphago-mastering-ancient-game-of-go.html'>Google Research Blog: AlphaGo: Mastering the ancient game of Go with Machine Learning</a>
+
+[9] <a href='http://www.theweathercompany.com/DeepThunder'>The Weather Company Launches Deep Thunder - the World’s Most Advanced Hyper-Local Weather Forecasting Model for Businesses</a>
+
+
+Sources (2)
+========================================================
+incremental:false
+
+&nbsp;
+
+[10] <a href='https://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html'>Christos Stergiou and Dimitrios Siganos, Artificial neurons</a>
+
+[11] <a href='https://uwaterloo.ca/data-science/sites/ca.data-science/files/uploads/files/lecture_1_0.pdf'>University of Waterloo Deep Learning Slides</a>
+
+[12] <a href="http://www.deeplearningbook.org/"> Goodfellow et al., Deep Learning</a>
+
+[13] <a href='http://cs231n.github.io/optimization-2/'>CS231n: Convolutional Neural Networks for Visual Recognition, Stanford</a>
+
+[14] <a href='https://colah.github.io/posts/2015-08-Backprop/'>Chris Olah, Calculus on Computational Graphs: Backpropagation</a>
 
