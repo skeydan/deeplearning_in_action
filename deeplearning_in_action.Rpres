@@ -263,84 +263,123 @@ Applications by example
 
 &nbsp;
 
-- CNNS (Convolutional Neural Networks) in computer vision
-- Spee
+- CNNs (Convolutional Neural Networks) in computer vision
+- RNNs (Recurrent Neural Networks) for Natural Language Processing
+- Deep Reinforcement Learning for TBD
 
 
+Easy vs. hard, revisited
+========================================================
+incremental:false
+
+&nbsp;
+
+# VISION
 
 
 Why computer vision is hard
 ========================================================
 
-![optional caption text](deformable_cat.png)
-
-
-http://www.robots.ox.ac.uk/~vgg/publications/2012/parkhi12a/parkhi12a.pdf
+<table>
+<tr>
+<td><img src='deformable_cat.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [15]</td></tr>
+</table>
 
 
 Tasks in computer vision
 ========================================================
 
-![optional caption text](class_loc_dec_seg.png)
-
-Source: CS231n (Stanford) lecture slides
+<table>
+<tr>
+<td><img src='class_loc_dec_seg.png' width='1000px' /></td>
+</tr>
+<tr><td class='src'>Source: [13]</td></tr>
+</table>
 
 
 Classification
 ========================================================
+incremental:false
 
-![optional caption text](classification.png)
+&nbsp;
 
-A. Krizhevsky, I. Sutskever and G. Hinton, “ImageNet Classification with Deep Convolutional Neural Networks”, in Advances in Neural Information Processing Systems, 2012.
+In classification, the required output is a probability for each class.
 
-// output probability for each class
+<table>
+<tr>
+<td><img src='classification.png' width='1000px' /></td>
+</tr>
+<tr><td class='src'>Source: [13]</td></tr>
+</table>
+
+
 
 Localization
 ========================================================
+incremental:false
 
-![optional caption text](localization.png)
+&nbsp;
 
-[1] Erhan D., Szegedy C., Toshev, A., and Anguelov, D., "Scalable Object Detection using Deep Neural Networks", The IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014, pp. 2147-2154.
+In localization, the network needs to identify the position of an object in an image.
 
-// slide window over image
-// or predict bounding box coordinates (regression)
+<table>
+<tr>
+<td><img src='localization.png' width='600px' /></td>
+</tr>
+<tr><td class='src'>Source: [17]</td></tr>
+</table>
+
 
 
 Object Detection
 ========================================================
+incremental:false
 
-![optional caption text](detection.png)
+&nbsp;
 
-http://image-net.org/challenges/LSVRC/2014/
+In object detection (a.k.a. image recognition), the network has to classify and localize multiple objects in an image. 
 
-// = classifying and localizing multiple objects in an image 
-// aka image recognition
-// binary mask regression for each object type combined with predicting the bounding box coordinates
+<table>
+<tr>
+<td><img src='detection.png' width='600px' /></td>
+</tr>
+<tr><td class='src'>Source: [18]</td></tr>
+</table>
 
 
 Segmentation
 ========================================================
+incremental:false
 
-![optional caption text](segmentation.png)
+&nbsp;
 
-https://arxiv.org/pdf/1411.4038.pdf
+In segmentation, the network needs to predict a class value for __each input pixel__.
 
-//the network needs to predict a class value for each input pixel.
+<table>
+<tr>
+<td><img src='segmentation.png' width='400px' /></td>
+</tr>
+<tr><td class='src'>Source: [19]</td></tr>
+</table>
 
 
 Semantic vs. Instance Segmentation
 ========================================================
+incremental:false
 
-![optional caption text](segmentation.png)
+&nbsp;
 
-https://arxiv.org/pdf/1411.4038.pdf
+Semantic segmentation segments by __class__, instance segmentation by __class instance__.
 
-@inproceedings{SilbermanCoverage:ECCV14,
-  author    = {Nathan Silberman, David Sontag and Rob Fergus},
-  title     = {Instance Segmentation of Indoor Scenes using a Coverage Loss},
-  booktitle = {ECCV},
-  year      = {2014}
-}
+<table>
+<tr>
+<td><img src='segmentation2.png' width='1000px' /></td>
+</tr>
+<tr><td class='src'>Source: [20]</td></tr>
+</table>
+
 
 
 Convnet visualization
@@ -479,7 +518,27 @@ incremental:false
 
 [12] <a href="http://www.deeplearningbook.org/"> Goodfellow et al., Deep Learning</a>
 
-[13] <a href='http://cs231n.github.io/optimization-2/'>CS231n: Convolutional Neural Networks for Visual Recognition, Stanford</a>
+[13] <a href='http://cs231n.github.io/'>CS231n: Convolutional Neural Networks for Visual Recognition, Stanford</a>
 
 [14] <a href='https://colah.github.io/posts/2015-08-Backprop/'>Chris Olah, Calculus on Computational Graphs: Backpropagation</a>
+
+[15] <a href='http://www.robots.ox.ac.uk/~vgg/publications/2012/parkhi12a/parkhi12a.pdf'>Parkhi, Vedaldi, Zisserman and Jawahar, Cats and Dogs.</a>
+
+[16] <a href='https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf'>A. Krizhevsky, I. Sutskever and G. Hinton, ImageNet Classification with Deep Convolutional Neural Networks</a>
+
+
+Sources (3)
+========================================================
+incremental:false
+
+&nbsp;
+
+[17] <a href='http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Erhan_Scalable_Object_Detection_2014_CVPR_paper.pdf'>Erhan, Szegedy, Toshev, and Anguelov, Scalable Object Detection using Deep Neural Networks</a>
+
+[18] <a href='http://image-net.org/challenges/LSVRC/2014/'>ImageNet Large Scale Visual Recognition Challenge 2014 (ILSVRC2014)</a>
+
+[19] <a href='https://arxiv.org/pdf/1411.4038.pdf'>Long, Shelhamer, and Darrell, Fully Convolutional Networks for Semantic Segmentation.</a>
+
+[20] <a href='http://cs.nyu.edu/~dsontag/papers/SilSonFer_ECCV14.pdf'>Silberman, Sontag, and Fergus, Instance Segmentation of Indoor Scenes using a Coverage Loss</a>
+
 

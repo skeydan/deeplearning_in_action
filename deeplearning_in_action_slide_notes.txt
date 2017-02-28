@@ -205,6 +205,17 @@ npm run serve
 -> stopping here - you can comfortably play around with learning rate, activation, regularization...
 
 
+Localization
+========================================================
 
+2 ways:
+- slide window over image
+- or predict bounding box coordinates (regression)
+
+
+Object Detection
+========================================================
+
+done by binary mask regression for each object type combined with predicting the bounding box coordinates
 
 
