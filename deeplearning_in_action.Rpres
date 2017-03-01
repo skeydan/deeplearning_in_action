@@ -187,7 +187,7 @@ We need:
 
 - a way to quantify our current (e.g., classification) error
 - a way to reduce error on subsequent iterations
-- a way to propagate our improvement logic from the output layer all back through the network!
+- a way to propagate our improvement logic from the output layer all the way back through the network!
 
 
 Quantifying error: Loss functions
@@ -274,7 +274,7 @@ incremental:false
 
 &nbsp;
 
-# VISION
+## VISION
 
 
 Why computer vision is hard
@@ -309,7 +309,7 @@ In classification, the required output is a probability for each class.
 
 <table>
 <tr>
-<td><img src='classification.png' width='1000px' /></td>
+<td><img src='classification.png' width='500px' /></td>
 </tr>
 <tr><td class='src'>Source: [13]</td></tr>
 </table>
@@ -326,7 +326,7 @@ In localization, the network needs to identify the position of an object in an i
 
 <table>
 <tr>
-<td><img src='localization.png' width='600px' /></td>
+<td><img src='localization.png' width='400px' /></td>
 </tr>
 <tr><td class='src'>Source: [17]</td></tr>
 </table>
@@ -355,7 +355,7 @@ incremental:false
 
 &nbsp;
 
-In segmentation, the network needs to predict a class value for __each input pixel__.
+In segmentation, the network needs to predict a class value for _each input pixel_.
 
 <table>
 <tr>
@@ -371,7 +371,7 @@ incremental:false
 
 &nbsp;
 
-Semantic segmentation segments by __class__, instance segmentation by __class instance__.
+Semantic segmentation segments by _class_, instance segmentation by _class instance_.
 
 <table>
 <tr>
@@ -381,34 +381,243 @@ Semantic segmentation segments by __class__, instance segmentation by __class in
 </table>
 
 
-
-Convnet visualization
+How do we identify the required features? Enter:
 ========================================================
 
-https://arxiv.org/pdf/1311.2901.pdf
+&nbsp;
+
+# Convolutional Neural Networks
 
 
-RNN
+A convolutional neural network
+========================================================
+incremental:false
+
+&nbsp;
+
+
+<table>
+<tr>
+<td><img src='convnet.jpeg' width='1000px' /></td>
+</tr>
+<tr><td class='src'>Source: [13]</td></tr>
+</table>
+
+
+The convolution operation
+========================================================
+incremental:false
+
+&nbsp;
+
+(Strictly, this is _cross-correlation_, but it doesn't matter)
+
+<table>
+<tr>
+<td><img src='convolution_demo.png' width='500px' /></td>
+</tr>
+<tr><td class='src'>Source: [13]</td></tr>
+</table>
+
+
+Gimp demo
 ========================================================
 
-colah
+&nbsp;
 
-LSTM "conveyor belt"
+Blur: $\begin{bmatrix}1 & 1 & 1\\1 & 1 & 1\\1 & 1 & 1\end{bmatrix}$, sharpen: $\begin{bmatrix}0 & -1 & 0\\-1 & 5 & -1\\0 & -1 & 0\end{bmatrix}$, edge detect: $\begin{bmatrix}0 & 1 & 0\\1 & -4 & 1\\0 & 1 & 0\end{bmatrix}$
 
 
-Word2Vec
+see: <a href='https://docs.gimp.org/en/plug-in-convmatrix.html'>https://docs.gimp.org/en/plug-in-convmatrix.html</a>
+
+
+Easy vs. hard, revisited
+========================================================
+incremental:false
+
+&nbsp;
+
+### VISION
+
+## LANGUAGE
+
+
+Until now, all we've seen are static snapshots
+========================================================
+
+&nbsp;
+
+How do we handle sequences
+
+- language: words, sentences, paragraphs...
+- all kinds of _serial_ information: sensor data, stock prices...
+
+?
+
+&nbsp;
+
+> Jane walked into the room. John walked in too. It was late in the day, and everyone was walking home after a long day at work. Jane said hi to ___ 
+
+Source: [21]
+
+
+How do we remember the past? Enter:
+========================================================
+
+&nbsp;
+
+# Recurrent neural networks
+
+
+Hidden state
+========================================================
+incremental:false
+
+&nbsp;
+
+<table>
+<tr>
+<td><img src='rnn_olah.png' width='500px' /></td><td><img src='rnn_goodfellow.png' width='500px' /></td>
+</tr>
+<tr><td class='src'>Sources: [22], [12]</td></tr>
+</table>
+
+
+Basic RNN closeup
+========================================================
+incremental:false
+
+&nbsp;
+
+The basic RNN at every step combines new input and existing state.
+
+<table>
+<tr>
+<td><img src='rnn_olah2.png' width='500px' /></td>
+</tr>
+<tr><td class='src'>Source: [22]</td></tr>
+</table>
+
+
+Remembering is not enough
+========================================================
+
+&nbsp;
+
+Sometimes we also need to forget!
+
+
+
+Two kinds of state: the LSTM "conveyor belt"
+========================================================
+incremental:false
+
+&nbsp;
+
+The LSTM (Long Term Short Memory) architecture adds an additional state layer, the cell state
+
+
+<table>
+<tr>
+<td><img src='lstm_olah.png' width='500px' /></td>
+</tr>
+<tr><td class='src'>Source: [22]</td></tr>
+</table>
+
+
+LSTM cell state and the three gates
+========================================================
+incremental:false
+
+&nbsp;
+
+The LSTM cell state is protected by three gates, the forget, input, and output gates:
+
+
+<table>
+<tr>
+<td><img src='forget_olah.png' width='500px' /></td><td><img src='input_olah.png' width='500px' /></td><td><img src='output_olah.png' width='500px' /></td>
+</tr>
+<tr><td class='src'>Source: [22]</td></tr>
+</table>
+
+
+
+RNN Example: Machine Translation
+========================================================
+incremental:false
+
+&nbsp;
+
+In translation, we have _two_ sets of sequential data, one on the source and one on the target side!
+
+Enter: sequence-to-sequence models
+
+
+<table>
+<tr>
+<td><img src='seq2seq.png' width='500px' /></td>
+</tr>
+<tr><td class='src'>Source: [23]</td></tr>
+</table>
+
+
+Real-life seq-2-seq: Google's Neural Machine Translation System
+========================================================
+incremental:false
+
+&nbsp;
+
+<table>
+<tr>
+<td><img src='gntm.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [24]</td></tr>
+</table>
+
+
+TBD########################################################################
+Zero-shot translation
 ========================================================
 
 
 
-
-Linking images and language: image caption generation
+Easy vs. hard, revisited
 ========================================================
+incremental:false
 
-![optional caption text](image_captions.png)
-![optional caption text](image_captions2.png)
+&nbsp;
 
-http://cs.stanford.edu/people/karpathy/cvpr2015.pdf
+### VISION
+### LANGUAGE
+## LINKING THE SENSES: IMAGE CAPTIONS
+
+
+Generating image captions 
+========================================================
+incremental:false
+
+&nbsp;
+
+<table>
+<tr>
+<td><img src='gntm.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [26]</td></tr>
+</table>
+
+Easy vs. hard, revisited
+========================================================
+incremental:false
+
+&nbsp;
+
+### VISION
+### LANGUAGE
+### LINKING THE SENSES: IMAGE CAPTIONS
+## LINKING THE SENSES: ADDING AUDIO TO SILENT FILM
+
+
 
 
 Linking video and sound: adding audio to silent film
@@ -541,4 +750,22 @@ incremental:false
 
 [20] <a href='http://cs.nyu.edu/~dsontag/papers/SilSonFer_ECCV14.pdf'>Silberman, Sontag, and Fergus, Instance Segmentation of Indoor Scenes using a Coverage Loss</a>
 
+[21] <a href='http://cs224d.stanford.edu/lecture_notes/LectureNotes4.pdf'>Stanford CS 224D Deep Learning for NLP Lecture Notes</a>
 
+[22] <a href='http://colah.github.io/posts/2015-08-Understanding-LSTMs/'>Chris Olah, Understanding LSTM Networks</a>
+
+[23] <a href='https://www.tensorflow.org/versions/master/tutorials/seq2seq/index.html'>Tensorflow seq2seq tutorial</a>
+
+
+Sources (4)
+========================================================
+incremental:false
+
+&nbsp;
+
+
+[24] <a href='https://arxiv.org/pdf/1609.08144.pdf'>Wu et al., Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation</a>
+
+[25] <a href='https://arxiv.org/pdf/1611.04558.pdf'>Johnson et al., Google’s Multilingual Neural Machine Translation System: Enabling Zero-Shot Translation</a>
+
+[26] <a href='http://cs.stanford.edu/people/karpathy/cvpr2015.pdf'>Karpathy, Andrey, and Li, Fei Fei, Deep Visual-Semantic Alignments for Generating Image Descriptions</a>

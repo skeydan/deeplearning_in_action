@@ -219,3 +219,9 @@ Object Detection
 done by binary mask regression for each object type combined with predicting the bounding box coordinates
 
 
+Gimp demo
+========================================================
+
+blur: set divisor=9!
+
+
