@@ -590,7 +590,7 @@ incremental:false
 
 ### VISION
 ### LANGUAGE
-## LINKING THE SENSES: IMAGE CAPTIONS
+## VISION <-> LANGUAGE
 
 
 Generating image captions 
@@ -601,7 +601,7 @@ incremental:false
 
 <table>
 <tr>
-<td><img src='gntm.png' width='800px' /></td>
+<td><img src='imagecaptions.png' width='1000px' /></td>
 </tr>
 <tr><td class='src'>Source: [26]</td></tr>
 </table>
@@ -614,8 +614,8 @@ incremental:false
 
 ### VISION
 ### LANGUAGE
-### LINKING THE SENSES: IMAGE CAPTIONS
-## LINKING THE SENSES: ADDING AUDIO TO SILENT FILM
+### VISION <-> LANGUAGE
+## VISION <-> SOUND
 
 
 
@@ -623,74 +623,192 @@ incremental:false
 Linking video and sound: adding audio to silent film
 ========================================================
 
-![optional caption text](sound_generation.png)
-
-https://arxiv.org/pdf/1512.08512.pdf
-
-
-
-
-
+<table>
+<tr>
+<td><img src='sound_generation.png' width='600px' /></td>
+</tr>
+<tr><td class='src'>Source: [27]</td></tr>
+</table>
 
 
-
-
-
-
-Reinforcement learning: Welcome to the humans
+Easy vs. hard, revisited
 ========================================================
+incremental:false
 
-![optional caption text](typesofml.png) 
+&nbsp;
 
-Source: deep driving
+### VISION
+### LANGUAGE
+### VISION <-> LANGUAGE
+### VISION <-> SOUND
+## LIFE (SORT OF)
 
-![optional caption text](dopamine.png) 
 
-Reinforcement learning: Welcome to the humans
+Life
 ========================================================
+incremental:false
 
-> David Silver, Google Deep Mind: _Reinforcement Learning: AI = RL_
+&nbsp;
 
-> Takeaway from Supervised Learning:
-Neural networks are great at memorization and not (yet)
-great at reasoning.
-Hope for Reinforcement Learning:
-Brute-force propagation of outcomes to knowledge about
-states and actions. This is a kind of brute-force “reasoning”.
-MIT DD
-
-
-Delayed reward
-========================================================
-
-If I get a reward many many actions later, how do I find out what I'm getting the reward _for_?
+<table>
+<tr>
+<td><img src='dopamine.png' width='600px' /></td>
+<td><img src='dopaminewall.png' width='800px' /></td>
+</tr>
+</table>
 
 
 Reinforcement learning
 ========================================================
+incremental:false
 
-![optional caption text](robot.png)
+<table>
+<tr>
+<td><img src='typesofml.png' width='1200px' /></td>
+</tr>
+<tr><td class='src'>Source: [28]</td></tr>
+</table>
 
-MIT
+
+Reinforcement learning, why? (1)
+========================================================
+incremental: false
+
+&nbsp;
+
+<table>
+<tr>
+<td><img src='philosophy.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [28]</td></tr>
+</table>
+
+
+Reinforcement learning, why? (2)
+========================================================
+incremental: false
+
+&nbsp;
+
+> "Reinforcement learning + deep learning = AI" 
+
+&nbsp;
+
+(David Silver, Google Deep Mind)
+ 
+
+
+Reinforcement learning: the task
+========================================================
+incremental: false
+
+&nbsp;
+
+<table>
+<tr>
+<td><img src='robot.png' width='800px' /></td><td><img src='rl.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [28]</td></tr>
+</table>
 
 
 
-Deep reinforcement learning
+Reinforcement learning: The problem
 ========================================================
 
-![optional caption text](dqn.png) 
+&nbsp;
 
-http://www.nature.com/articles/nature16961.epdf?referrer_access_token=S7uXxNIroKd-0ITVLIW9mdRgN0jAjWel9jnR3ZoTv0OivKk3lXs6SxMz535byYwHnl5-dYSTNp9HCujoL8AwwR39NrI-N0UvQYqpO-G6W-1I6_OXAuVukQ08lbvopRKY2yVJlWWUJvj6gL5qyO8kI3FwsIuw4iSKC-s4RoTnZdVG8WevGFeuMdJ2Zl9cZF7yixAslaF4yKEx3rom3ZszmZBsyuq-9RAnx1XZac4keCI%3D&tracking_referrer=www.nature.com
+If I get a reward many many actions later...
+
+... how do I find out what _concrete action_ I'm getting the reward _for_?
 
 
-Deep reinforcement learning
+Q-Learning
+========================================================
+incremental: false
+
+&nbsp;
+
+Learn to maximize future (discounted) reward:
+
+<table>
+<tr>
+<td><img src='qlearning.png' width='1000px' /></td>
+</tr>
+<tr><td class='src'>Source: [28]</td></tr>
+</table>
+
+
+
+
+Reinforcement learning: The dilemma
 ========================================================
 
-![optional caption text](dqn2.png) 
+&nbsp;
 
-http://icml.cc/2016/tutorials/AlphaGo-tutorial-slides.pdf
+EXPLORATION vs. EXPLOITATION
 
 
+Deep Q-Learning
+========================================================
+incremental: false
+
+&nbsp;
+
+Approximate the Q function by a (deep) network
+
+<table>
+<tr>
+<td><img src='deepq.png' width='1000px' /></td>
+</tr>
+<tr><td class='src'>Source: [28]</td></tr>
+</table>
+
+
+Deep Q-Learning
+========================================================
+incremental: false
+
+&nbsp;
+
+Approximate the Q function by a (deep) network
+
+<table>
+<tr>
+<td><img src='deepq.png' width='1000px' /></td>
+</tr>
+<tr><td class='src'>Source: [28]</td></tr>
+</table>
+
+
+Deep Q-Learning @AlphaGo
+========================================================
+incremental: false
+
+&nbsp;
+
+<table>
+<tr>
+<td><img src='dqn2.png' width='1000px' /></td><td><img src='go1.png' width='600px' /></td>
+</tr>
+<tr><td class='src'>Source: [28]</td></tr>
+</table>
+
+
+Deep Learning, where to go next?
+========================================================
+
+&nbsp;
+
+"Awesome deep learning"", a great collection of resources: 
+https://github.com/ChristosChristofidis/awesome-deep-learning
+
+Andrey Karpathy's "Arxiv Sanity Preserver": 
+http://www.arxiv-sanity.com/
+
+Have fun - the adventure's just beginning...
+
+Thanks for your attention!
 
 Sources (1)
 ========================================================
@@ -769,3 +887,9 @@ incremental:false
 [25] <a href='https://arxiv.org/pdf/1611.04558.pdf'>Johnson et al., Google’s Multilingual Neural Machine Translation System: Enabling Zero-Shot Translation</a>
 
 [26] <a href='http://cs.stanford.edu/people/karpathy/cvpr2015.pdf'>Karpathy, Andrey, and Li, Fei Fei, Deep Visual-Semantic Alignments for Generating Image Descriptions</a>
+
+[27] <a href='https://arxiv.org/pdf/1512.08512.pdf'>Owens et al., Visually indicated sounds</a>
+
+[28] <a href='http://selfdrivingcars.mit.edu/'>MIT 6.S094: Deep Learning for Self-Driving Cars Lecture Slides</a>
+
+[29] <a href='http://icml.cc/2016/tutorials/AlphaGo-tutorial-slides.pdf'>Google Deep Mind, AlphaGo tutorial</a>
