@@ -251,7 +251,7 @@ incremental:false
 
 <table>
 <tr>
-<td><img src='backprop.png' width='800px' /></td>
+<td><img src='backprop.png' width='500px' /></td>
 </tr>
 <tr><td class='src'>Source: [13]</td></tr>
 </table>
@@ -263,9 +263,9 @@ Applications by example
 
 &nbsp;
 
-- CNNs (Convolutional Neural Networks) in computer vision
+- CNNs (Convolutional Neural Networks) for computer vision
 - RNNs (Recurrent Neural Networks) for Natural Language Processing
-- Deep Reinforcement Learning for TBD
+- Deep Reinforcement Learning for real-life learning
 
 
 Easy vs. hard, revisited
@@ -556,7 +556,7 @@ Enter: sequence-to-sequence models
 
 <table>
 <tr>
-<td><img src='seq2seq.png' width='500px' /></td>
+<td><img src='seq2seq.png' width='1000px' /></td>
 </tr>
 <tr><td class='src'>Source: [23]</td></tr>
 </table>
@@ -574,11 +574,6 @@ incremental:false
 </tr>
 <tr><td class='src'>Source: [24]</td></tr>
 </table>
-
-
-TBD########################################################################
-Zero-shot translation
-========================================================
 
 
 
@@ -666,36 +661,9 @@ incremental:false
 <tr>
 <td><img src='typesofml.png' width='1200px' /></td>
 </tr>
-<tr><td class='src'>Source: [28]</td></tr>
+<tr><td class='src'>Source: [1]</td></tr>
 </table>
 
-
-Reinforcement learning, why? (1)
-========================================================
-incremental: false
-
-&nbsp;
-
-<table>
-<tr>
-<td><img src='philosophy.png' width='800px' /></td>
-</tr>
-<tr><td class='src'>Source: [28]</td></tr>
-</table>
-
-
-Reinforcement learning, why? (2)
-========================================================
-incremental: false
-
-&nbsp;
-
-> "Reinforcement learning + deep learning = AI" 
-
-&nbsp;
-
-(David Silver, Google Deep Mind)
- 
 
 
 Reinforcement learning: the task
@@ -708,7 +676,7 @@ incremental: false
 <tr>
 <td><img src='robot.png' width='800px' /></td><td><img src='rl.png' width='800px' /></td>
 </tr>
-<tr><td class='src'>Source: [28]</td></tr>
+<tr><td class='src'>Source: [1]</td></tr>
 </table>
 
 
@@ -723,7 +691,19 @@ If I get a reward many many actions later...
 ... how do I find out what _concrete action_ I'm getting the reward _for_?
 
 
-Q-Learning
+
+
+Reinforcement learning: The dilemma
+========================================================
+
+&nbsp;
+
+EXPLOITATION vs. EXPLORATION
+
+
+
+
+How to learn from delayed rewards: Q-Learning
 ========================================================
 incremental: false
 
@@ -735,18 +715,28 @@ Learn to maximize future (discounted) reward:
 <tr>
 <td><img src='qlearning.png' width='1000px' /></td>
 </tr>
-<tr><td class='src'>Source: [28]</td></tr>
+<tr><td class='src'>Source: [1]</td></tr>
 </table>
 
 
 
-
-Reinforcement learning: The dilemma
+The quest for real intelligence
 ========================================================
 
 &nbsp;
 
-EXPLORATION vs. EXPLOITATION
+- supervised learning: reasoning by memorization
+- pure reinforcement learning: reasoning by trial-and-error 
+- can we get less brute-force here?
+
+
+&nbsp;
+
+&nbsp;
+
+> "Reinforcement learning + deep learning = AI" (David Silver, Google Deep Mind)
+ 
+
 
 
 Deep Q-Learning
@@ -761,23 +751,7 @@ Approximate the Q function by a (deep) network
 <tr>
 <td><img src='deepq.png' width='1000px' /></td>
 </tr>
-<tr><td class='src'>Source: [28]</td></tr>
-</table>
-
-
-Deep Q-Learning
-========================================================
-incremental: false
-
-&nbsp;
-
-Approximate the Q function by a (deep) network
-
-<table>
-<tr>
-<td><img src='deepq.png' width='1000px' /></td>
-</tr>
-<tr><td class='src'>Source: [28]</td></tr>
+<tr><td class='src'>Source: [1]</td></tr>
 </table>
 
 
@@ -791,7 +765,7 @@ incremental: false
 <tr>
 <td><img src='dqn2.png' width='1000px' /></td><td><img src='go1.png' width='600px' /></td>
 </tr>
-<tr><td class='src'>Source: [28]</td></tr>
+<tr><td class='src'>Source: [29]</td></tr>
 </table>
 
 
@@ -800,15 +774,24 @@ Deep Learning, where to go next?
 
 &nbsp;
 
-"Awesome deep learning"", a great collection of resources: 
-https://github.com/ChristosChristofidis/awesome-deep-learning
+For structured reading:
 
-Andrey Karpathy's "Arxiv Sanity Preserver": 
-http://www.arxiv-sanity.com/
+- "Awesome deep learning": https://github.com/ChristosChristofidis/awesome-deep-learning
+- "Deep Learning Papers reading roadmap": https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap
+- Andrey Karpathy's "Arxiv Sanity Preserver": http://www.arxiv-sanity.com/
 
-Have fun - the adventure's just beginning...
 
-Thanks for your attention!
+Just wanna have some cool fun?
+
+- Andrey Karpathy's blog: http://karpathy.github.io/ (especially: http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+- Christopher Olah's blog: http://colah.github.io/
+
+
+========================================================
+
+
+# Thanks for your attention!
+
 
 Sources (1)
 ========================================================
@@ -816,19 +799,19 @@ incremental:false
 
 &nbsp;
 
-[1] <a href='http://selfdrivingcars.mit.edu/'>MIT 6.S094: Deep Learning for Self-Driving Cars Lecture Slides</a>
+[1] <a href='http://selfdrivingcars.mit.edu/'>MIT 6.S094 Deep Learning for Self-Driving Cars Lecture Slides</a>
 
-[3] <a href='http://www.nature.com/nature/journal/v542/n7639/full/nature21056.html'>Esteva et al., Dermatologist-level classification of skin cancer with deep neural networks</a>
+[3] <a href='http://www.nature.com/nature/journal/v542/n7639/full/nature21056.html'>Esteva et al. Dermatologist-level classification of skin cancer with deep neural networks</a>
 
-[4] <a href='https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol'>Wikipedia, AlphaGo versus Lee Sedol</a>
+[4] <a href='https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol'>Wikipedia. AlphaGo versus Lee Sedol</a>
 
-[5] <a href='www.sciedupress.com/journal/index.php/air/article/download/7720/5022'>Yoshihara et al., Leveraging temporal properties of news events for stock market prediction.</a>
+[5] <a href='www.sciedupress.com/journal/index.php/air/article/download/7720/5022'>Yoshihara et al. Leveraging temporal properties of news events for stock market prediction</a>
 
-[6] <a href='http://www.theweathercompany.com/newsroom/2017/01/23/seasonal-outlook-weather-company-predicts-unusually-mild-weather-early-february'</a> The Weather Company, Seasonal forecast</a>
+[6] <a href='http://www.theweathercompany.com/newsroom/2017/01/23/seasonal-outlook-weather-company-predicts-unusually-mild-weather-early-february'</a> The Weather Company. Seasonal forecast</a>
 
 [7] <a href= 'http://www.dddmag.com/news/2017/02/neural-network-learns-select-potential-anticancer-drugs'>Neural Network Learns to Select Potential Anticancer Drugs</a>
 
-[8] <a href='https://research.googleblog.com/2016/01/alphago-mastering-ancient-game-of-go.html'>Google Research Blog: AlphaGo: Mastering the ancient game of Go with Machine Learning</a>
+[8] <a href='https://research.googleblog.com/2016/01/alphago-mastering-ancient-game-of-go.html'>Google Research Blog. AlphaGo: Mastering the ancient game of Go with Machine Learning</a>
 
 [9] <a href='http://www.theweathercompany.com/DeepThunder'>The Weather Company Launches Deep Thunder - the World’s Most Advanced Hyper-Local Weather Forecasting Model for Businesses</a>
 
@@ -839,19 +822,19 @@ incremental:false
 
 &nbsp;
 
-[10] <a href='https://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html'>Christos Stergiou and Dimitrios Siganos, Artificial neurons</a>
+[10] <a href='https://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html'>Stergiou, C. and Siganos, D. Artificial neurons</a>
 
 [11] <a href='https://uwaterloo.ca/data-science/sites/ca.data-science/files/uploads/files/lecture_1_0.pdf'>University of Waterloo Deep Learning Slides</a>
 
-[12] <a href="http://www.deeplearningbook.org/"> Goodfellow et al., Deep Learning</a>
+[12] <a href="http://www.deeplearningbook.org/"> Goodfellow et al. Deep Learning</a>
 
-[13] <a href='http://cs231n.github.io/'>CS231n: Convolutional Neural Networks for Visual Recognition, Stanford</a>
+[13] <a href='http://cs231n.github.io/'>Stanford CS231n Convolutional Neural Networks Lecture Notes</a>
 
-[14] <a href='https://colah.github.io/posts/2015-08-Backprop/'>Chris Olah, Calculus on Computational Graphs: Backpropagation</a>
+[14] <a href='https://colah.github.io/posts/2015-08-Backprop/'>Chris Olah. Calculus on Computational Graphs: Backpropagation</a>
 
-[15] <a href='http://www.robots.ox.ac.uk/~vgg/publications/2012/parkhi12a/parkhi12a.pdf'>Parkhi, Vedaldi, Zisserman and Jawahar, Cats and Dogs.</a>
+[15] <a href='http://www.robots.ox.ac.uk/~vgg/publications/2012/parkhi12a/parkhi12a.pdf'>Parkhi et al. Cats and Dogs</a>
 
-[16] <a href='https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf'>A. Krizhevsky, I. Sutskever and G. Hinton, ImageNet Classification with Deep Convolutional Neural Networks</a>
+[16] <a href='https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf'>Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks</a>
 
 
 Sources (3)
@@ -860,17 +843,17 @@ incremental:false
 
 &nbsp;
 
-[17] <a href='http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Erhan_Scalable_Object_Detection_2014_CVPR_paper.pdf'>Erhan, Szegedy, Toshev, and Anguelov, Scalable Object Detection using Deep Neural Networks</a>
+[17] <a href='http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Erhan_Scalable_Object_Detection_2014_CVPR_paper.pdf'>Erhan et al. Scalable Object Detection using Deep Neural Networks</a>
 
 [18] <a href='http://image-net.org/challenges/LSVRC/2014/'>ImageNet Large Scale Visual Recognition Challenge 2014 (ILSVRC2014)</a>
 
-[19] <a href='https://arxiv.org/pdf/1411.4038.pdf'>Long, Shelhamer, and Darrell, Fully Convolutional Networks for Semantic Segmentation.</a>
+[19] <a href='https://arxiv.org/pdf/1411.4038.pdf'>Long et al. Fully Convolutional Networks for Semantic Segmentation</a>
 
-[20] <a href='http://cs.nyu.edu/~dsontag/papers/SilSonFer_ECCV14.pdf'>Silberman, Sontag, and Fergus, Instance Segmentation of Indoor Scenes using a Coverage Loss</a>
+[20] <a href='http://cs.nyu.edu/~dsontag/papers/SilSonFer_ECCV14.pdf'>Silberman et al. Instance Segmentation of Indoor Scenes using a Coverage Loss</a>
 
 [21] <a href='http://cs224d.stanford.edu/lecture_notes/LectureNotes4.pdf'>Stanford CS 224D Deep Learning for NLP Lecture Notes</a>
 
-[22] <a href='http://colah.github.io/posts/2015-08-Understanding-LSTMs/'>Chris Olah, Understanding LSTM Networks</a>
+[22] <a href='http://colah.github.io/posts/2015-08-Understanding-LSTMs/'>Chris Olah. Understanding LSTM Networks</a>
 
 [23] <a href='https://www.tensorflow.org/versions/master/tutorials/seq2seq/index.html'>Tensorflow seq2seq tutorial</a>
 
@@ -882,14 +865,12 @@ incremental:false
 &nbsp;
 
 
-[24] <a href='https://arxiv.org/pdf/1609.08144.pdf'>Wu et al., Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation</a>
+[24] <a href='https://arxiv.org/pdf/1609.08144.pdf'>Wu et al. Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation</a>
 
-[25] <a href='https://arxiv.org/pdf/1611.04558.pdf'>Johnson et al., Google’s Multilingual Neural Machine Translation System: Enabling Zero-Shot Translation</a>
+[25] <a href='https://arxiv.org/pdf/1611.04558.pdf'>Johnson et al. Google’s Multilingual Neural Machine Translation System: Enabling Zero-Shot Translation</a>
 
-[26] <a href='http://cs.stanford.edu/people/karpathy/cvpr2015.pdf'>Karpathy, Andrey, and Li, Fei Fei, Deep Visual-Semantic Alignments for Generating Image Descriptions</a>
+[26] <a href='http://cs.stanford.edu/people/karpathy/cvpr2015.pdf'>Karpathy, A. and Li, F. Deep Visual-Semantic Alignments for Generating Image Descriptions</a>
 
-[27] <a href='https://arxiv.org/pdf/1512.08512.pdf'>Owens et al., Visually indicated sounds</a>
+[27] <a href='https://arxiv.org/pdf/1512.08512.pdf'>Owens et al. Visually indicated sounds</a>
 
-[28] <a href='http://selfdrivingcars.mit.edu/'>MIT 6.S094: Deep Learning for Self-Driving Cars Lecture Slides</a>
-
-[29] <a href='http://icml.cc/2016/tutorials/AlphaGo-tutorial-slides.pdf'>Google Deep Mind, AlphaGo tutorial</a>
+[29] <a href='http://icml.cc/2016/tutorials/AlphaGo-tutorial-slides.pdf'>Google Deep Mind. AlphaGo tutorial</a>
