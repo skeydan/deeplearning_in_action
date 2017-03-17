@@ -1,0 +1,635 @@
+```{r setup, include=FALSE}
+opts_chunk$set(cache=TRUE)
+#opts_chunk$set(out.width='750px', dpi=200)
+```
+<style>
+.reveal table td{
+    border: 0;
+}
+.reveal table {
+    border: 0;
+}
+.reveal src {
+    font-size: 0.6em;
+}
+.small-code pre code {
+  font-size: 1em;
+}
+.midcenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+.footer {
+    position: fixed; 
+    top: 90%;
+    text-align:right; 
+    width:90%;
+    margin-top:-150px;
+}
+.reveal section img {
+  border: 0px;
+  box-shadow: 0 0 0 0;
+}
+</style>
+
+
+Deep Learning in Action  
+========================================================
+autosize: true
+width: 1440
+incremental:true 
+
+Action!
+========================================================
+
+<table>
+<tr>
+<td><img src='self_driving_cars.png' width='300px' /></td><td><img src='translate.png' width='300px'/></td><td><img src='skincancer.png' width='300px'/></td>
+</tr>
+<tr>
+<td><img src='go.png' width='300px' /></td><td><img src='stock.png' width='300px'/></td><td><img src='weather.png' width='300px'/></td>
+</tr>
+<tr><td class='src'>Sources: [1],[3],[4],[5],[6]</td></tr>
+</table>
+
+
+So what is a neural network?
+========================================================
+
+Biological neuron and artificial neuron
+
+<table>
+<tr>
+<td><img src='neuron1.png' width='400px' /></td><td><img src='neuron2.png' width='400px'/></td>
+</tr>
+<tr><td class='src'>Source: [10]</td></tr>
+</table>
+
+
+Prototype of a neuron: the perceptron (Rosenblatt, 1958)
+========================================================
+
+<table>
+<tr>
+<td><img src='perceptron.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [10]</td></tr>
+</table>
+
+
+Deep neural networks: introducing hidden layers
+========================================================
+
+<table>
+<tr>
+<td><img src='deep_nn.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [10]</td></tr>
+</table>
+
+
+Why go deep? A bit of background
+========================================================
+
+&nbsp;
+
+Easy? Difficult?
+
+- walk
+- talk
+- play chess
+- solve matrix computations
+
+
+Easy for us - difficult for computers
+========================================================
+
+&nbsp;
+
+- controlled movement 
+- speech recognition
+- speech generation
+- object recognition and object localization
+
+
+Representation matters
+========================================================
+
+<table>
+<tr>
+<td><img src='coords.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [12]</td></tr>
+</table>
+
+
+
+Just feed the network the right features?
+========================================================
+
+&nbsp;
+
+What are the correct pixel values for a "bike" feature?
+
+- race bike, mountain bike, e-bike?
+- pixels in the shadow may be much darker
+- what if bike is mostly obscured by rider standing in front?
+
+
+
+Let the network pick the features
+========================================================
+
+... a layer at a time
+
+<table>
+<tr>
+<td><img src='features.png' width='600px' /></td>
+</tr>
+<tr><td class='src'>Source: [12]</td></tr>
+</table>
+
+
+
+So how does a network learn?
+========================================================
+
+&nbsp;
+
+Just a sec - let's meet a real neural network first!
+
+Play around in the browser:
+
+- <a href='http://cs.stanford.edu/people/karpathy/convnetjs/index.html'>ConvNetJS</a>
+- <a href='http://cs.stanford.edu/people/karpathy/convnetjs/index.html'>TensorFlow playground</a>
+
+
+So how DOES a neural network learn?
+========================================================
+
+&nbsp;
+
+We need:
+
+- a way to quantify our current (e.g., classification) error
+- a way to reduce error on subsequent iterations
+- a way to propagate our improvement logic from the output layer all the way back through the network!
+
+
+Quantifying error: Loss functions
+========================================================
+
+&nbsp;
+
+The _loss_ (or _cost_) function indicates the cost incurred from false prediction / misclassification
+
+Probably the best-known loss function in machine learning is __mean squared error__: 
+
+  $\frac{1}{n} \sum_n{(\hat{y} - y)^2}$
+  
+Most of the time, in deep learning we use __cross entropy__:
+
+  $- \sum_j{t_j log(y_j)}$
+  
+This is the negative log probability of the right answer.
+  
+
+
+
+Learning from errors: Gradient Descent
+========================================================
+
+
+<table>
+<tr>
+<td><img src='convex.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [12]</td></tr>
+</table>
+
+
+Propagate back errors ... well: Backpropagation!
+========================================================
+incremental:false
+
+&nbsp;
+
+- basically, just the chain rule: $\frac{dz}{dx} = \frac{dz}{dy} \frac{dy}{dx}$
+- chained over several layers:
+
+<table>
+<tr>
+<td><img src='backprop2.png' width='600px' /></td>
+</tr>
+<tr><td class='src'>Source: [14]</td></tr>
+</table>
+
+
+ 
+Forward pass and backward pass: Intuition
+========================================================
+incremental:false
+
+- imagine output of $f = (x + y) * z = -12$ "wants" to get bigger
+- this could happen by $q$ getting smaller -> $q$ receives negative gradient $\frac{df}{dq} = -4$
+- $q$ just passes on this gradient to $x$ and $y$, as  $\frac{dq}{dx} = 1$ and  $\frac{dq}{dy} = 1$
+- alternatively, it could happen by $z$ getting bigger -> $z$ receives positive gradient $\frac{df}{dz} = 3$
+
+<table>
+<tr>
+<td><img src='backprop.png' width='500px' /></td>
+</tr>
+<tr><td class='src'>Source: [13]</td></tr>
+</table>
+
+
+
+Applications by example
+========================================================
+
+&nbsp;
+
+- CNNs (Convolutional Neural Networks) for computer vision
+- RNNs (Recurrent Neural Networks) for Natural Language Processing
+- Deep Reinforcement Learning for real-life learning
+
+
+Easy vs. hard, revisited
+========================================================
+incremental:false
+
+&nbsp;
+
+## VISION
+
+
+Why computer vision is hard
+========================================================
+
+<table>
+<tr>
+<td><img src='deformable_cat.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [15]</td></tr>
+</table>
+
+
+Tasks in computer vision
+========================================================
+
+<table>
+<tr>
+<td><img src='class_loc_dec_seg.png' width='1000px' /></td>
+</tr>
+<tr><td class='src'>Source: [13]</td></tr>
+</table>
+
+
+How do we identify the required features? Enter:
+========================================================
+
+&nbsp;
+
+# Convolutional Neural Networks
+
+
+A convolutional neural network
+========================================================
+incremental:false
+
+&nbsp;
+
+
+<table>
+<tr>
+<td><img src='convnet.jpeg' width='1000px' /></td>
+</tr>
+<tr><td class='src'>Source: [13]</td></tr>
+</table>
+
+
+The convolution operation
+========================================================
+incremental:false
+
+&nbsp;
+
+(Strictly, this is _cross-correlation_, but it doesn't matter)
+
+<table>
+<tr>
+<td><img src='convolution_demo.png' width='500px' /></td>
+</tr>
+<tr><td class='src'>Source: [13]</td></tr>
+</table>
+
+
+Gimp demo
+========================================================
+
+&nbsp;
+
+Blur: $\begin{bmatrix}1 & 1 & 1\\1 & 1 & 1\\1 & 1 & 1\end{bmatrix}$, sharpen: $\begin{bmatrix}0 & -1 & 0\\-1 & 5 & -1\\0 & -1 & 0\end{bmatrix}$, edge detect: $\begin{bmatrix}0 & 1 & 0\\1 & -4 & 1\\0 & 1 & 0\end{bmatrix}$
+
+
+see: <a href='https://docs.gimp.org/en/plug-in-convmatrix.html'>https://docs.gimp.org/en/plug-in-convmatrix.html</a>
+
+
+Easy vs. hard, revisited
+========================================================
+incremental:false
+
+&nbsp;
+
+### VISION
+
+## LANGUAGE
+
+
+Until now, all we've seen are static snapshots
+========================================================
+
+&nbsp;
+
+How do we handle sequences
+
+- language: words, sentences, paragraphs...
+- all kinds of _serial_ information: sensor data, stock prices...
+
+?
+
+&nbsp;
+
+> Jane walked into the room. John walked in too. It was late in the day, and everyone was walking home after a long day at work. Jane said hi to ___ 
+
+Source: [21]
+
+
+How do we remember the past? Enter:
+========================================================
+
+&nbsp;
+
+# Recurrent neural networks
+
+
+Hidden state
+========================================================
+incremental:false
+
+&nbsp;
+
+<table>
+<tr>
+<td><img src='rnn_olah.png' width='500px' /></td><td><img src='rnn_goodfellow.png' width='500px' /></td>
+</tr>
+<tr><td class='src'>Sources: [22], [12]</td></tr>
+</table>
+
+
+
+Remembering is not enough
+========================================================
+
+&nbsp;
+
+Sometimes we also need to forget!
+
+
+LSTM cell state and the three gates
+========================================================
+incremental:false
+
+&nbsp;
+
+The LSTM cell state is protected by three gates, the forget, input, and output gates:
+
+
+<table>
+<tr>
+<td><img src='forget_olah.png' width='500px' /></td><td><img src='input_olah.png' width='500px' /></td><td><img src='output_olah.png' width='500px' /></td>
+</tr>
+<tr><td class='src'>Source: [22]</td></tr>
+</table>
+
+
+
+RNN Example: Machine Translation
+========================================================
+incremental:false
+
+&nbsp;
+
+In translation, we have _two_ sets of sequential data, one on the source and one on the target side!
+
+Enter: sequence-to-sequence models
+
+
+<table>
+<tr>
+<td><img src='seq2seq.png' width='1000px' /></td>
+</tr>
+<tr><td class='src'>Source: [23]</td></tr>
+</table>
+
+
+
+Easy vs. hard, revisited
+========================================================
+incremental:false
+
+&nbsp;
+
+### VISION
+### LANGUAGE
+## LIFE (SORT OF)
+
+
+Life
+========================================================
+incremental:false
+
+&nbsp;
+
+<table>
+<tr>
+<td><img src='dopamine.png' width='600px' /></td>
+<td><img src='dopaminewall.png' width='800px' /></td>
+</tr>
+</table>
+
+
+Reinforcement learning
+========================================================
+incremental:false
+
+<table>
+<tr>
+<td><img src='typesofml.png' width='1200px' /></td>
+</tr>
+<tr><td class='src'>Source: [1]</td></tr>
+</table>
+
+
+
+Reinforcement learning: the task
+========================================================
+incremental: false
+
+&nbsp;
+
+<table>
+<tr>
+<td><img src='robot.png' width='800px' /></td><td><img src='rl.png' width='800px' /></td>
+</tr>
+<tr><td class='src'>Source: [1]</td></tr>
+</table>
+
+
+
+Reinforcement learning: The problem
+========================================================
+
+&nbsp;
+
+If I get a reward many many actions later...
+
+... how do I find out what _concrete action_ I'm getting the reward _for_?
+
+
+
+The quest for real intelligence
+========================================================
+
+&nbsp; 
+
+> "Reinforcement learning + deep learning = AI" (David Silver, Google Deep Mind)
+ 
+
+
+Deep Q-Learning @AlphaGo
+========================================================
+incremental: false
+
+&nbsp;
+
+<table>
+<tr>
+<td><img src='dqn2.png' width='1000px' /></td><td><img src='go1.png' width='600px' /></td>
+</tr>
+<tr><td class='src'>Source: [29]</td></tr>
+</table>
+
+
+Deep Learning, where to go next?
+========================================================
+
+&nbsp;
+
+For structured reading:
+
+- "Awesome deep learning": https://github.com/ChristosChristofidis/awesome-deep-learning
+- "Deep Learning Papers reading roadmap": https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap
+- Andrey Karpathy's "Arxiv Sanity Preserver": http://www.arxiv-sanity.com/
+
+
+Just wanna have some cool fun?
+
+- Andrey Karpathy's blog: http://karpathy.github.io/ (especially: http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+- Christopher Olah's blog: http://colah.github.io/
+
+
+Now, you can help ...
+========================================================
+
+&nbsp;
+
+... train my neural network
+
+... ssession feedback, please :-)
+
+Thanks for your attention!
+
+
+Sources (1)
+========================================================
+incremental:false
+
+&nbsp;
+
+[1] <a href='http://selfdrivingcars.mit.edu/'>MIT 6.S094 Deep Learning for Self-Driving Cars Lecture Slides</a>
+
+[3] <a href='http://www.nature.com/nature/journal/v542/n7639/full/nature21056.html'>Esteva et al. Dermatologist-level classification of skin cancer with deep neural networks</a>
+
+[4] <a href='https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol'>Wikipedia. AlphaGo versus Lee Sedol</a>
+
+[5] <a href='www.sciedupress.com/journal/index.php/air/article/download/7720/5022'>Yoshihara et al. Leveraging temporal properties of news events for stock market prediction</a>
+
+[6] <a href='http://www.theweathercompany.com/newsroom/2017/01/23/seasonal-outlook-weather-company-predicts-unusually-mild-weather-early-february'</a> The Weather Company. Seasonal forecast</a>
+
+[7] <a href= 'http://www.dddmag.com/news/2017/02/neural-network-learns-select-potential-anticancer-drugs'>Neural Network Learns to Select Potential Anticancer Drugs</a>
+
+[8] <a href='https://research.googleblog.com/2016/01/alphago-mastering-ancient-game-of-go.html'>Google Research Blog. AlphaGo: Mastering the ancient game of Go with Machine Learning</a>
+
+[9] <a href='http://www.theweathercompany.com/DeepThunder'>The Weather Company Launches Deep Thunder - the World’s Most Advanced Hyper-Local Weather Forecasting Model for Businesses</a>
+
+
+Sources (2)
+========================================================
+incremental:false
+
+&nbsp;
+
+[10] <a href='https://www.doc.ic.ac.uk/~nd/surprise_96/journal/vol4/cs11/report.html'>Stergiou, C. and Siganos, D. Artificial neurons</a>
+
+[11] <a href='https://uwaterloo.ca/data-science/sites/ca.data-science/files/uploads/files/lecture_1_0.pdf'>University of Waterloo Deep Learning Slides</a>
+
+[12] <a href="http://www.deeplearningbook.org/"> Goodfellow et al. Deep Learning</a>
+
+[13] <a href='http://cs231n.github.io/'>Stanford CS231n Convolutional Neural Networks Lecture Notes</a>
+
+[14] <a href='https://colah.github.io/posts/2015-08-Backprop/'>Chris Olah. Calculus on Computational Graphs: Backpropagation</a>
+
+[15] <a href='http://www.robots.ox.ac.uk/~vgg/publications/2012/parkhi12a/parkhi12a.pdf'>Parkhi et al. Cats and Dogs</a>
+
+[16] <a href='https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf'>Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks</a>
+
+
+Sources (3)
+========================================================
+incremental:false
+
+&nbsp;
+
+[17] <a href='http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Erhan_Scalable_Object_Detection_2014_CVPR_paper.pdf'>Erhan et al. Scalable Object Detection using Deep Neural Networks</a>
+
+[18] <a href='http://image-net.org/challenges/LSVRC/2014/'>ImageNet Large Scale Visual Recognition Challenge 2014 (ILSVRC2014)</a>
+
+[19] <a href='https://arxiv.org/pdf/1411.4038.pdf'>Long et al. Fully Convolutional Networks for Semantic Segmentation</a>
+
+[20] <a href='http://cs.nyu.edu/~dsontag/papers/SilSonFer_ECCV14.pdf'>Silberman et al. Instance Segmentation of Indoor Scenes using a Coverage Loss</a>
+
+[21] <a href='http://cs224d.stanford.edu/lecture_notes/LectureNotes4.pdf'>Stanford CS 224D Deep Learning for NLP Lecture Notes</a>
+
+[22] <a href='http://colah.github.io/posts/2015-08-Understanding-LSTMs/'>Chris Olah. Understanding LSTM Networks</a>
+
+[23] <a href='https://www.tensorflow.org/versions/master/tutorials/seq2seq/index.html'>Tensorflow seq2seq tutorial</a>
+
+
+Sources (4)
+========================================================
+incremental:false
+
+&nbsp;
+
+
+[24] <a href='https://arxiv.org/pdf/1609.08144.pdf'>Wu et al. Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation</a>
+
+[25] <a href='https://arxiv.org/pdf/1611.04558.pdf'>Johnson et al. Google’s Multilingual Neural Machine Translation System: Enabling Zero-Shot Translation</a>
+
+[26] <a href='http://cs.stanford.edu/people/karpathy/cvpr2015.pdf'>Karpathy, A. and Li, F. Deep Visual-Semantic Alignments for Generating Image Descriptions</a>
+
+[27] <a href='https://arxiv.org/pdf/1512.08512.pdf'>Owens et al. Visually indicated sounds</a>
+
+[29] <a href='http://icml.cc/2016/tutorials/AlphaGo-tutorial-slides.pdf'>Google Deep Mind. AlphaGo tutorial</a>

@@ -1,19 +1,30 @@
+-- open files:
+
+1)
+./convnet_demo_convolution.html
+
+2)
+./convnetjs_demo_classify2d.html
+
+3)
+cd /home/key/code/python/tensorflow-playground
+npm run serve
+
+
 
 Action
 ========================================================
 
 - autonomous driving: where are the others, how are they moving/what are they doing, where am I, how are the weather conditions, how do I get to ...?
   -> deep neural networks used for object recognition and localization, deep reinforcement learning used for motion planning
-  -> more upcoming
 
 - machine translation: as you type, Google updates the translation. Also, Google does language detection, and updates the guess at every step. How does this work - language comes in as a sequence, how do I keep track of the elements I've already seen, and how do I weigh the new input against the old, and how is the translation generated?
   -> again, deep NNs are responsible for a recent big improvement in performance
-  -> more upcoming
   
 - medical diagnosis: example: detection of skin cancer: CNNs performing on par with human experts - opportunities for more large-scale prevention, e.g. using smartphone app
 
-- pharmacology: develop new drugs - normally developing new pharmacological products is extremely costly and  takes very long, so if this could be speeded up enormous savings would result
-  -> generative adverserial neural networks
+- pharmacology: develop new drugs - normally developing new pharmacological products is extremely costly and  takes very long, so if this could be sped up enormous savings would result
+  -> generative adversarial neural networks
 
 - AlphaGo: March 2016, AlphaGo wins 4/5 matches against Lee Sedol - Go substantially more difficult than chess - AI win predicted to take considerably longer by experts
   -> combination of 2 deep neural networks (the policy network suggests the move, the value network evaluates the position) - first the policy network was trained on input from human experts, then both networks were further evolved using reinforcement learning
@@ -43,6 +54,7 @@ Prototype of a neuron: the perceptron (Rosenblatt, 1958)
 ConvNetJS Demo
 ========================================================
 
+explain the TASK!!
 
 1. SIMPLE data, shallow network
 
@@ -203,6 +215,12 @@ npm run serve
 
 
 -> stopping here - you can comfortably play around with learning rate, activation, regularization...
+
+
+Quantifying error: Loss functions
+========================================================
+
+http://datascience.stackexchange.com/questions/9302/the-cross-entropy-error-function-in-neural-networks
 
 
 Localization
